@@ -22,3 +22,8 @@
   font-size: 14px;
   padding: .5em;
 }
+
+.spot-rating {
+  display: flex;
+  justify-content: flex-end;
+}

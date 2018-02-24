@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactStars from 'react-stars';
 import './Spot.css';
 
 class Spot extends Component {
@@ -17,6 +18,14 @@ class Spot extends Component {
         <div className="spot-info">
           <div>Address: calle falsa 123s</div>
           <div>Phone: 123123123</div>
+          <div className="spot-rating">
+            <ReactStars
+              count={5}
+              size={24}
+              value={3}
+              color2={'#ffd700'}
+            />
+          </div>
         </div>
       </div>
     );
