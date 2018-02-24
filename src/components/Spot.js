@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './Spot.css';
 
 class Spot extends Component {
   render() {
     return (
-      <div>
+      <div className="spot">
         <div>
           <img
             src="./assets/field.jpg"
@@ -11,12 +12,11 @@ class Spot extends Component {
             width={360}
             height={240}
           />
-          <h3>Spot Name</h3>
         </div>
-        <div>
-          <h4>Address</h4>
-          <h4>Phone</h4>
-          <h4>Rating</h4>
+        <div className="spot-name">Spot Name</div>
+        <div className="spot-info">
+          <div>Address: calle falsa 123s</div>
+          <div>Phone: 123123123</div>
         </div>
       </div>
     );

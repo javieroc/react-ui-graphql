@@ -1,12 +1,9 @@
 import React from 'react';
+import './Search.css';
 
 const Search = () => (
-  <div>
-    <img
-      src=""
-      alt=""
-    />
-    <input placeholder="Buscar..." />
+  <div className="search-section">
+    <input placeholder="Search..." />
   </div>
 );
 

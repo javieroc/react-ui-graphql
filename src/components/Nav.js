@@ -1,9 +1,14 @@
 import React from 'react';
+import './Nav.css';
 
 const Nav = () => (
-  <nav>
-    <a>Salta Futbol</a>
-  </nav>
+  <div className="navbar">
+    <nav>
+      <div className="navbar-brand">
+        <a>Salta Futbol</a>
+      </div>
+    </nav>
+  </div>
 );
 
 export default Nav;

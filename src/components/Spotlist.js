@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Spot from './Spot';
+import './Spotlist.css';
 
 class Spotlist extends Component {
   render() {
     return (
-      <div>
+      <div className="spotlist">
         <Spot />
         <Spot />
         <Spot />
