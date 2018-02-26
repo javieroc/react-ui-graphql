@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 import './Spot.css';
 
@@ -42,5 +43,13 @@ class Spot extends Component {
     );
   }
 }
+
+Spot.propTypes = {
+  name: PropTypes.string,
+  address: PropTypes.string,
+  phone: PropTypes.string,
+  rating: PropTypes.number,
+  photo: PropTypes.string,
+};
 
 export default Spot;
