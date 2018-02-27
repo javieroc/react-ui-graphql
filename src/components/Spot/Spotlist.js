@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Spot from './Spot';
+import SpotCard from './SpotCard';
 import './Spotlist.css';
 
 const spotlist = [
   {
+    _id: '1',
     name: 'Central Norte',
     description: 'This is a description test',
     address: 'Fake street 123',
@@ -16,6 +17,7 @@ const spotlist = [
     rating: 3,
   },
   {
+    _id: '2',
     name: 'Central Norte',
     description: 'This is a description test',
     address: 'Fake street 123',
@@ -28,6 +30,7 @@ const spotlist = [
     rating: 3,
   },
   {
+    _id: '3',
     name: 'Central Norte',
     description: 'This is a description test',
     address: 'Fake street 123',
@@ -40,6 +43,7 @@ const spotlist = [
     rating: 3,
   },
   {
+    _id: '4',
     name: 'Central Norte',
     description: 'This is a description test',
     address: 'Fake street 123',
@@ -52,6 +56,7 @@ const spotlist = [
     rating: 3,
   },
   {
+    _id: '5',
     name: 'Central Norte',
     description: 'This is a description test',
     address: 'Fake street 123',
@@ -64,6 +69,7 @@ const spotlist = [
     rating: 3,
   },
   {
+    _id: '6',
     name: 'Central Norte',
     description: 'This is a description test',
     address: 'Fake street 123',
@@ -80,7 +86,7 @@ const spotlist = [
 class Spotlist extends Component {
   render() {
     const list = spotlist.map((spot) => {
-      return <Spot {...spot} />
+      return <SpotCard key={spot._id} {...spot} />
     });
     return (
       <div className="spotlist">

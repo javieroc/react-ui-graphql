@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
-import './Spot.css';
+import './SpotCard.css';
 
-class Spot extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {
-      name,
-      address,
-      phone,
-      rating,
-      photo,
-    } = this.props;
-    return (
-      <div className="spot">
+const SpotCard = (props) => {
+  const {
+    _id,
+    name,
+    address,
+    phone,
+    rating,
+    photo,
+  } = props;
+  return (
+    <div className="spot-card">
+      <Link to={`/spots/${_id}`}>
         <div>
           <img
             src={photo}
@@ -26,25 +24,26 @@ class Spot extends Component {
             height={240}
           />
         </div>
-        <div className="spot-name">{name}</div>
-        <div className="spot-info">
+        <div className="spot-card-name">{name}</div>
+        <div className="spot-card-info">
           <div>Address: {address}</div>
           <div>Phone: {phone}</div>
-          <div className="spot-rating">
+          <div className="spot-card-rating">
             <ReactStars
               count={5}
               size={24}
               value={rating}
-              color2={'#ffd700'}
+              color2="#ffd700"
             />
           </div>
         </div>
-      </div>
-    );
-  }
-}
+      </Link>
+    </div>
+  );
+};
 
-Spot.propTypes = {
+SpotCard.propTypes = {
+  _id: PropTypes.string,
   name: PropTypes.string,
   address: PropTypes.string,
   phone: PropTypes.string,
@@ -52,4 +51,4 @@ Spot.propTypes = {
   photo: PropTypes.string,
 };
 
-export default Spot;
+export default SpotCard;

@@ -6,10 +6,12 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'js/[name].js'
+    filename: 'js/[name].js',
+    publicPath: '/'
   },
   devServer: {
     port: 9000,
+    historyApiFallback: true
   },
   module: {
     rules: [
