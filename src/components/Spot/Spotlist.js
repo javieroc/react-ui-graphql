@@ -15,6 +15,7 @@ const spotlist = [
     },
     photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
     rating: 3,
+    prece: 130,
   },
   {
     _id: '2',
@@ -28,6 +29,7 @@ const spotlist = [
     },
     photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
     rating: 3,
+    prece: 150,
   },
   {
     _id: '3',
@@ -41,6 +43,7 @@ const spotlist = [
     },
     photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
     rating: 3,
+    prece: 130,
   },
   {
     _id: '4',
@@ -54,6 +57,7 @@ const spotlist = [
     },
     photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
     rating: 3,
+    prece: 100,
   },
   {
     _id: '5',
@@ -67,6 +71,7 @@ const spotlist = [
     },
     photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
     rating: 3,
+    prece: 160,
   },
   {
     _id: '6',
@@ -80,6 +85,7 @@ const spotlist = [
     },
     photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
     rating: 3,
+    prece: 150,
   },
 ];
 

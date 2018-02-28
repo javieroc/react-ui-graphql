@@ -1,9 +1,8 @@
 import React from 'react';
+import SpotDetail from '../components/Spot/SpotDetail';
 
 const Spot = () => (
-  <div>
-    <h1>Spot Detail</h1>
-  </div>
+  <SpotDetail />
 );
 
 export default Spot;
