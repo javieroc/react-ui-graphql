@@ -1,0 +1,9 @@
+.spot-detail {
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding: 2em 1em;
+  width: 80%;
+  flex-wrap: wrap;
+}

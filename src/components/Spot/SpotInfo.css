@@ -1,0 +1,11 @@
+.spot-info {
+  width: 55%;
+}
+
+.spot-info img {
+  width: 100%;
+}
+
+.spot-info h4{
+  margin: .2em 0;
+}
