@@ -21,7 +21,7 @@ const spot = {
 const SpotDetail = () => (
   <div className="spot-detail">
     <SpotInfo {...spot} />
-    <SpotMap {...spot} />
+    <SpotMap {...spot.location} />
   </div>
 );
 

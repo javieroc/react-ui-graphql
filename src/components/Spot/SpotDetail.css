@@ -1,9 +1,30 @@
 .spot-detail {
   background: white;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
   padding: 2em 1em;
-  width: 80%;
+  width: 95%;
   flex-wrap: wrap;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .spot-detail {
+    width: 95%
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .spot-detail {
+    width: 80%
+  }
 }

@@ -17,13 +17,15 @@ const SpotMap = compose(
   }),
   withScriptjs,
   withGoogleMap,
-)(props => (
-  <GoogleMap
-    defaultZoom={14}
-    defaultCenter={{ lat: -24.7893779, lng: -65.4075302 }}
-  >
-    <Marker position={{ lat: -24.7893779, lng: -65.4075302 }} onClick={props.onMarkerClick} />
-  </GoogleMap>
-));
+)((props) => {
+  return (
+    <GoogleMap
+      defaultZoom={14}
+      defaultCenter={{ lat: props.lat, lng: props.lng }}
+    >
+      <Marker position={{ lat: props.lat, lng: props.lng }} onClick={props.onMarkerClick} />
+    </GoogleMap>
+  );
+});
 
 export default SpotMap;
