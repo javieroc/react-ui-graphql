@@ -7,11 +7,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'js/[name].js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devServer: {
     port: 9000,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -22,12 +22,12 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['es2015', 'react', 'stage-2'],
-          }
+          },
         },
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(jpg|png|gif|svg)$/,
@@ -37,9 +37,9 @@ module.exports = {
             limit: 1000000,
             fallback: 'file-loader',
             name: 'images/[name].[hash].[ext]',
-          }
-        }
+          },
+        },
       },
-    ]
-  }
-}
+    ],
+  },
+};

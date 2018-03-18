@@ -1,102 +1,57 @@
 import React, { Component } from 'react';
+import { HashLoader } from 'react-spinners';
 import SpotCard from './SpotCard';
 import './Spotlist.css';
 
-const spotlist = [
-  {
-    _id: '1',
-    name: 'Central Norte',
-    description: 'This is a description test',
-    address: 'Fake street 123',
-    phone: '987654321',
-    location: {
-      lat: '-24.7893779',
-      lng: '-65.4075302',
-    },
-    photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
-    rating: 3,
-    prece: 130,
-  },
-  {
-    _id: '2',
-    name: 'Central Norte',
-    description: 'This is a description test',
-    address: 'Fake street 123',
-    phone: '987654321',
-    location: {
-      lat: '-24.7893779',
-      lng: '-65.4075302',
-    },
-    photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
-    rating: 3,
-    prece: 150,
-  },
-  {
-    _id: '3',
-    name: 'Central Norte',
-    description: 'This is a description test',
-    address: 'Fake street 123',
-    phone: '987654321',
-    location: {
-      lat: '-24.7893779',
-      lng: '-65.4075302',
-    },
-    photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
-    rating: 3,
-    prece: 130,
-  },
-  {
-    _id: '4',
-    name: 'Central Norte',
-    description: 'This is a description test',
-    address: 'Fake street 123',
-    phone: '987654321',
-    location: {
-      lat: '-24.7893779',
-      lng: '-65.4075302',
-    },
-    photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
-    rating: 3,
-    prece: 100,
-  },
-  {
-    _id: '5',
-    name: 'Central Norte',
-    description: 'This is a description test',
-    address: 'Fake street 123',
-    phone: '987654321',
-    location: {
-      lat: '-24.7893779',
-      lng: '-65.4075302',
-    },
-    photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
-    rating: 3,
-    prece: 160,
-  },
-  {
-    _id: '6',
-    name: 'Central Norte',
-    description: 'This is a description test',
-    address: 'Fake street 123',
-    phone: '987654321',
-    location: {
-      lat: '-24.7893779',
-      lng: '-65.4075302',
-    },
-    photo: 'https://t3.ftcdn.net/jpg/01/87/76/70/240_F_187767015_Y123csJ7E7dqaQnQDSJCntlLTbXxsZdH.jpg',
-    rating: 3,
-    prece: 150,
-  },
-];
-
 class Spotlist extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll, false);
+  }
+
+  handleScroll() {
+    const { loading } = this.props;
+    const { hasNextPage } = this.props.spots.pageInfo;
+
+    if (
+      (window.scrollY + window.innerHeight + 50 >= document.body.offsetHeight) &&
+      !loading &&
+      hasNextPage
+    ) {
+      this.props.loadMoreSpots();
+    }
+  }
+
   render() {
-    const list = spotlist.map((spot) => {
-      return <SpotCard key={spot._id} {...spot} />
-    });
+    const { spots, loading } = this.props;
+
+    let list = [];
+    if (spots) {
+      list = spots.edges.map(({ node }) => <SpotCard key={node._id} {...node} />);
+    }
     return (
-      <div className="spotlist">
-        {list}
+      <div>
+        <div className="spotlist">
+          {list}
+        </div>
+        {
+          loading ?
+            <div className="sweet-loader">
+              <HashLoader loading={loading} />
+            </div> : null
+        }
       </div>
     );
   }

@@ -11,14 +11,14 @@ const SpotCard = (props) => {
     address,
     phone,
     rating,
-    photo,
+    photos,
   } = props;
   return (
     <div className="spot-card">
       <Link to={`/spots/${_id}`}>
         <div>
           <img
-            src={photo}
+            src={photos[0]}
             alt=""
             width={360}
             height={240}
@@ -48,7 +48,7 @@ SpotCard.propTypes = {
   address: PropTypes.string,
   phone: PropTypes.string,
   rating: PropTypes.number,
-  photo: PropTypes.string,
+  photos: PropTypes.array,
 };
 
 export default SpotCard;

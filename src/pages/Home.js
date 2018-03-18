@@ -4,15 +4,12 @@ import { graphql } from 'react-apollo';
 import Hero from '../components/Hero/Hero';
 import Spotlist from '../components/Spot/Spotlist';
 
-const Home = (props) => {
-  console.log(props);
-  return (
-    <div>
-      <Hero />
-      <Spotlist />
-    </div>
-  );
-};
+const Home = props => (
+  <div>
+    <Hero />
+    <Spotlist {...props.spotQuery} />
+  </div>
+);
 
 const SpotQuery = gql`
   query Spots($cursor: String, $first: Int) {
@@ -26,6 +23,10 @@ const SpotQuery = gql`
         node {
           _id
           name
+          address
+          phone
+          photos
+          rating
         }
       }
       pageInfo {
@@ -37,27 +38,34 @@ const SpotQuery = gql`
 `;
 
 const SpotsQueryOptions = {
+  options: {
+    notifyOnNetworkStatusChange: true,
+  },
   props({ data: { loading, spots, fetchMore } }) {
     return {
-      loading,
-      spots,
-      loadMoreSpots: () => fetchMore({
-        query: SpotQuery,
-        variables: {
-          cursor: spots.pageInfo.endCursor,
-          first: 3,
-        },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          const newEdges = fetchMoreResult.spots.edges;
-          const { total, pageInfo, __typename } = fetchMoreResult.spots;
-          return newEdges.length ? {
-            __typename,
-            total,
-            edges: [...previousResult.spots.edges, ...newEdges],
-            pageInfo,
-          } : previousResult;
-        },
-      }),
+      spotQuery: {
+        loading,
+        spots,
+        loadMoreSpots: () => fetchMore({
+          query: SpotQuery,
+          variables: {
+            cursor: spots.pageInfo.endCursor,
+            first: 3,
+          },
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            const newEdges = fetchMoreResult.spots.edges;
+            const { total, pageInfo, __typename } = fetchMoreResult.spots;
+            return newEdges.length ? {
+              spots: {
+                __typename,
+                total,
+                edges: [...previousResult.spots.edges, ...newEdges],
+                pageInfo,
+              },
+            } : previousResult;
+          },
+        }),
+      },
     };
   },
 };
