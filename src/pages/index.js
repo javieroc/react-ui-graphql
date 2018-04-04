@@ -7,8 +7,8 @@ import {
 import Home from './Home';
 import Spot from './Spot';
 import Login from './Login';
+import Register from './Register';
 import Nav from '../components/Nav/Nav';
-import Footer from '../components/Footer/Footer';
 
 const Routes = () => (
   <Router>
@@ -18,8 +18,8 @@ const Routes = () => (
         <Route exact path="/" component={Home} />
         <Route path="/spots/:spotId" component={Spot} />
         <Route path="/signin" component={Login} />
+        <Route path="/signup" component={Register} />
       </Switch>
-      <Footer />
     </div>
   </Router>
 );

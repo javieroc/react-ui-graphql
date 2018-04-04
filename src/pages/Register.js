@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
+import './Register.css';
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
     };
@@ -26,11 +27,32 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+    } = this.state;
 
     return (
-      <div className="login">
+      <div className="register">
         <form onSubmit={this.handleSubmit}>
+          <input
+            name="firstName"
+            onChange={this.onChange}
+            type="text"
+            placeholder="Firstname"
+            value={firstName}
+          />
+
+          <input
+            name="lastName"
+            onChange={this.onChange}
+            type="text"
+            placeholder="Lastname"
+            value={lastName}
+          />
+
           <input
             name="email"
             onChange={this.onChange}
@@ -47,12 +69,11 @@ class Login extends Component {
             value={password}
           />
 
-          <button type="submit" className="btn">Login</button>
-          <p className="message">Not registered? <Link to="/signup">Create an account</Link></p>
+          <button type="submit" className="btn">Create account</button>
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default Register;
