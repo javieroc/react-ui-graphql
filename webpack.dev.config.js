@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    saltafutbol: path.resolve(__dirname, 'src/index.js'),
+    reactui: ['babel-polyfill', path.resolve(__dirname, 'src/index.js')],
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -21,7 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-2'],
+            presets: ['es2015', 'react', 'stage-0'],
           },
         },
       },

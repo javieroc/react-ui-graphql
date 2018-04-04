@@ -4,23 +4,21 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (env) => {
   const plugins = [
-    new ExtractTextPlugin("css/[name].[hash].css")
-  ]
+    new ExtractTextPlugin('css/[name].[hash].css'),
+  ];
 
   if (env.NODE_ENV === 'production') {
-    plugins.push(
-      new CleanWebpackPlugin(['build'], {root: __dirname})
-    )
+    plugins.push(new CleanWebpackPlugin(['build'], { root: __dirname }));
   }
 
   return {
     entry: {
-      saltafutbol: path.resolve(__dirname, 'src/index.js'),
+      reactui: ['babel-polyfill', path.resolve(__dirname, 'src/index.js')],
     },
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'js/[name].[hash].js',
-      publicPath: path.resolve(__dirname, 'build')+"/",
+      publicPath: `${path.resolve(__dirname, 'build')}/`,
       chunkFilename: 'js/[id].[chunkhash].js',
     },
     devServer: {
@@ -34,8 +32,8 @@ module.exports = (env) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['es2015', 'react', 'stage-2'],
-            }
+              presets: ['es2015', 'react', 'stage-0'],
+            },
           },
         },
         {
@@ -46,10 +44,10 @@ module.exports = (env) => {
                 loader: 'css-loader',
                 options: {
                   minimize: true,
-                }
-              }
-            ]
-          })
+                },
+              },
+            ],
+          }),
         },
         {
           test: /\.(jpg|png|gif|svg)$/,
@@ -59,11 +57,11 @@ module.exports = (env) => {
               limit: 10000,
               fallback: 'file-loader',
               name: 'images/[name].[hash].[ext]',
-            }
-          }
+            },
+          },
         },
-      ]
+      ],
     },
-    plugins
-  }
-}
+    plugins,
+  };
+};

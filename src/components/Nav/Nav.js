@@ -5,7 +5,7 @@ const Nav = () => (
   <div className="navbar">
     <nav>
       <div className="navbar-brand">
-        <a>Salta Futbol</a>
+        <a>Rufus</a>
       </div>
     </nav>
   </div>

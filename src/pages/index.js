@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home';
 import Spot from './Spot';
+import Login from './Login';
 import Nav from '../components/Nav/Nav';
 import Footer from '../components/Footer/Footer';
 
@@ -16,6 +17,7 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/spots/:spotId" component={Spot} />
+        <Route path="/signin" component={Login} />
       </Switch>
       <Footer />
     </div>
