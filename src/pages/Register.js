@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import { gql } from 'apollo-boost';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './Register.css';
 
 class Register extends Component {
@@ -9,11 +12,13 @@ class Register extends Component {
       firstName: '',
       lastName: '',
       email: '',
+      address: '',
       password: '',
     };
 
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeAddress = address => this.setState({ address });
   }
 
   onChange(event) {
@@ -23,7 +28,14 @@ class Register extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+
+    try {
+      const googleAddress = await geocodeByAddress(this.state.address);
+      const location = await getLatLng(googleAddress[0]);
+      console.log('location', location);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -31,8 +43,15 @@ class Register extends Component {
       firstName,
       lastName,
       email,
+      address,
       password,
     } = this.state;
+
+    const inputProps = {
+      value: address,
+      onChange: this.onChangeAddress,
+      placeholder: 'Address',
+    };
 
     return (
       <div className="register">
@@ -60,6 +79,8 @@ class Register extends Component {
             placeholder="Email"
             value={email}
           />
+
+          <PlacesAutocomplete inputProps={inputProps} />
 
           <input
             name="password"
