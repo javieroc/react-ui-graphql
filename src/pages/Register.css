@@ -50,3 +50,12 @@
   color: #FE7138;
   text-decoration: none;
 }
+
+.custom-alert {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  list-style-type: none;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+}

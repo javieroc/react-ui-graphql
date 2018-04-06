@@ -14,6 +14,7 @@ class Register extends Component {
       email: '',
       address: '',
       password: '',
+      errorMessages: [],
     };
 
     this.onChange = this.onChange.bind(this);
@@ -32,9 +33,38 @@ class Register extends Component {
     try {
       const googleAddress = await geocodeByAddress(this.state.address);
       const location = await getLatLng(googleAddress[0]);
-      console.log('location', location);
-    } catch (error) {
-      console.log(error);
+      const {
+        firstName,
+        lastName,
+        email,
+        password,
+      } = this.state;
+
+      const registerData = {
+        firstName,
+        lastName,
+        location,
+        email,
+        address: googleAddress[0].formatted_address,
+        password,
+      };
+
+      const response = await this.props.mutate({
+        variables: {
+          registerData,
+        },
+      });
+
+      const { user, token } = response.data.register;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      this.props.history.push('/');
+    } catch (err) {
+      if (err.graphQLErrors) {
+        this.setState({
+          errorMessages: err.graphQLErrors[0],
+        });
+      }
     }
   }
 
@@ -56,6 +86,14 @@ class Register extends Component {
     return (
       <div className="register">
         <form onSubmit={this.handleSubmit}>
+          {
+            this.state.errorMessages.length > 0 &&
+            <ul className="custom-alert">
+              {
+                this.state.errorMessages.map(elem => <li key={elem.path}>{elem.message}</li>)
+              }
+            </ul>
+          }
           <input
             name="firstName"
             onChange={this.onChange}
@@ -97,4 +135,24 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const registerMutation = gql`
+  mutation register($registerData: RegisterData!) {
+    register(registerData: $registerData) {
+      user {
+        _id
+        firstName
+        lastName
+        location {
+          lat
+          lng
+        }
+        email
+        avatar
+        address
+      }
+      token
+    }
+  }
+`;
+
+export default graphql(registerMutation)(Register);
