@@ -1,10 +1,48 @@
 .navbar {
   background-color: #0093C6;
-  padding: .5em 1em;
+  display: flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 10px;
 }
 
 .navbar-brand {
-  color: #fff;
+  margin-right: auto;
+}
+
+.navbar-brand a {
+  color: #FFF;
   font-size: 18px;
   font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-avatar img {
+  border-radius: 50%;
+  height: 30px;
+}
+
+.navbar-avatar {
+  cursor: pointer;
+}
+
+.navbar-links a {
+  color: #FFF;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.navbar-links button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0px;
+  margin-right: 10px;
+  cursor: pointer;
 }
