@@ -2,18 +2,18 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
 import Hero from '../components/Hero/Hero';
-import Spotlist from '../components/Spot/Spotlist';
+import Placelist from '../components/Place/Placelist';
 
 const Home = props => (
   <div>
     <Hero />
-    <Spotlist {...props.spotQuery} />
+    <Placelist {...props.placeQuery} />
   </div>
 );
 
-const SpotQuery = gql`
-  query Spots($cursor: String, $first: Int) {
-    spots(
+const PlaceQuery = gql`
+  query Places($cursor: String, $first: Int) {
+    places(
       cursor: $cursor
       first: $first
     ) {
@@ -37,29 +37,29 @@ const SpotQuery = gql`
   }
 `;
 
-const SpotsQueryOptions = {
+const PlaceQueryOptions = {
   options: {
     notifyOnNetworkStatusChange: true,
   },
-  props({ data: { loading, spots, fetchMore } }) {
+  props({ data: { loading, places, fetchMore } }) {
     return {
-      spotQuery: {
+      placeQuery: {
         loading,
-        spots,
-        loadMoreSpots: () => fetchMore({
-          query: SpotQuery,
+        places,
+        loadMorePlaces: () => fetchMore({
+          query: PlaceQuery,
           variables: {
-            cursor: spots.pageInfo.endCursor,
+            cursor: places.pageInfo.endCursor,
             first: 3,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
-            const newEdges = fetchMoreResult.spots.edges;
-            const { total, pageInfo, __typename } = fetchMoreResult.spots;
+            const newEdges = fetchMoreResult.places.edges;
+            const { total, pageInfo, __typename } = fetchMoreResult.places;
             return newEdges.length ? {
-              spots: {
+              places: {
                 __typename,
                 total,
-                edges: [...previousResult.spots.edges, ...newEdges],
+                edges: [...previousResult.places.edges, ...newEdges],
                 pageInfo,
               },
             } : previousResult;
@@ -70,6 +70,6 @@ const SpotsQueryOptions = {
   },
 };
 
-const HomeWithData = graphql(SpotQuery, SpotsQueryOptions)(Home);
+const HomeWithData = graphql(PlaceQuery, PlaceQueryOptions)(Home);
 
 export default HomeWithData;

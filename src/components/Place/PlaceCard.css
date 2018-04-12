@@ -1,4 +1,4 @@
-.spot-card {
+.place-card {
   background-color: #fff;
   border-radius: 2px;
   cursor: pointer;
@@ -8,16 +8,16 @@
   width: 360px;
 }
 
-.spot-card:hover {
+.place-card:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.spot-card a {
+.place-card a {
   text-decoration: none;
   color: #000;
 }
 
-.spot-card-name {
+.place-card-name {
   color: #fff;
   font-size: 22px;
   font-weight: bold;
@@ -25,12 +25,12 @@
   transform: translate(3%, -150%);
 }
 
-.spot-card-info {
+.place-card-info {
   font-size: 14px;
   padding: .5em;
 }
 
-.spot-card-rating {
+.place-card-rating {
   display: flex;
   justify-content: flex-end;
 }

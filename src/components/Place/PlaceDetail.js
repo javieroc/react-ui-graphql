@@ -1,9 +1,9 @@
 import React from 'react';
-import SpotInfo from './SpotInfo';
-import SpotMap from './SpotMap';
-import './SpotDetail.css';
+import PlaceInfo from './PlaceInfo';
+import PlaceMap from './PlaceMap';
+import './PlaceDetail.css';
 
-const spot = {
+const place = {
   _id: '6',
   name: 'Central Norte',
   description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus debitis nesciunt repellat ipsa error sapiente laboriosam consectetur dolore, facilis nisi repellendus? Quo fugit hic iusto veritatis quos. Cumque, amet asperiores!',
@@ -18,11 +18,11 @@ const spot = {
   price: 150,
 };
 
-const SpotDetail = () => (
-  <div className="spot-detail">
-    <SpotInfo {...spot} />
-    <SpotMap {...spot.location} />
+const PlaceDetail = () => (
+  <div className="place-detail">
+    <PlaceInfo {...place} />
+    <PlaceMap {...place.location} />
   </div>
 );
 
-export default SpotDetail;
+export default PlaceDetail;

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
-import './SpotInfo.css';
+import './PlaceInfo.css';
 
-const SpotInfo = (props) => {
+const PlaceInfo = (props) => {
   const {
     name,
     description,
@@ -14,7 +14,7 @@ const SpotInfo = (props) => {
     price,
   } = props;
   return (
-    <div className="spot-info">
+    <div className="place-info">
       <img
         src={photo}
         alt=""
@@ -38,7 +38,7 @@ const SpotInfo = (props) => {
   );
 };
 
-SpotInfo.propTypes = {
+PlaceInfo.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   address: PropTypes.string,
@@ -48,4 +48,4 @@ SpotInfo.propTypes = {
   price: PropTypes.number,
 };
 
-export default SpotInfo;
+export default PlaceInfo;

@@ -5,7 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Home from './Home';
-import Spot from './Spot';
+import Place from './Place';
 import Login from './Login';
 import Register from './Register';
 import Nav from '../components/Nav/Nav';
@@ -16,7 +16,7 @@ const Routes = () => (
       <Nav />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/spots/:spotId" component={Spot} />
+        <Route path="/places/:placeId" component={Place} />
         <Route path="/signin" component={Login} />
         <Route path="/signup" component={Register} />
       </Switch>

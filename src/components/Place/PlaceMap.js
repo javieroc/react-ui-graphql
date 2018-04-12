@@ -6,26 +6,24 @@ import {
   GoogleMap,
   Marker,
 } from 'react-google-maps';
-import './SpotMap.css';
+import './PlaceMap.css';
 
-const SpotMap = compose(
+const PlaceMap = compose(
   withProps({
     googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAmoSllnLYVgVOS5mL4MfF0lLnAu25mxU&libraries=geometry,drawing,places',
     loadingElement: <div />,
-    containerElement: <div className="spot-map" style={{ height: '300px' }} />,
+    containerElement: <div className="place-map" style={{ height: '300px' }} />,
     mapElement: <div style={{ height: '100%' }} />,
   }),
   withScriptjs,
   withGoogleMap,
-)((props) => {
-  return (
-    <GoogleMap
-      defaultZoom={14}
-      defaultCenter={{ lat: props.lat, lng: props.lng }}
-    >
-      <Marker position={{ lat: props.lat, lng: props.lng }} onClick={props.onMarkerClick} />
-    </GoogleMap>
-  );
-});
+)(props => (
+  <GoogleMap
+    defaultZoom={14}
+    defaultCenter={{ lat: props.lat, lng: props.lng }}
+  >
+    <Marker position={{ lat: props.lat, lng: props.lng }} onClick={props.onMarkerClick} />
+  </GoogleMap>
+));
 
-export default SpotMap;
+export default PlaceMap;

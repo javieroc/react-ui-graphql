@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
-import './SpotCard.css';
+import './PlaceCard.css';
 
-const SpotCard = (props) => {
+const PlaceCard = (props) => {
   const {
     _id,
     name,
@@ -14,8 +14,8 @@ const SpotCard = (props) => {
     photos,
   } = props;
   return (
-    <div className="spot-card">
-      <Link to={`/spots/${_id}`}>
+    <div className="place-card">
+      <Link to={`/places/${_id}`}>
         <div>
           <img
             src={photos[0]}
@@ -24,11 +24,11 @@ const SpotCard = (props) => {
             height={240}
           />
         </div>
-        <div className="spot-card-name">{name}</div>
-        <div className="spot-card-info">
+        <div className="place-card-name">{name}</div>
+        <div className="place-card-info">
           <div>Address: {address}</div>
           <div>Phone: {phone}</div>
-          <div className="spot-card-rating">
+          <div className="place-card-rating">
             <ReactStars
               count={5}
               size={24}
@@ -42,7 +42,7 @@ const SpotCard = (props) => {
   );
 };
 
-SpotCard.propTypes = {
+PlaceCard.propTypes = {
   _id: PropTypes.string,
   name: PropTypes.string,
   address: PropTypes.string,
@@ -51,4 +51,4 @@ SpotCard.propTypes = {
   photos: PropTypes.array,
 };
 
-export default SpotCard;
+export default PlaceCard;

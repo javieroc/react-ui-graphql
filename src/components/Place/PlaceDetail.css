@@ -1,4 +1,4 @@
-.spot-detail {
+.place-detail {
   background: white;
   box-sizing: border-box;
   display: flex;
@@ -11,7 +11,7 @@
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .spot-detail {
+  .place-detail {
     width: 95%
   }
 }
@@ -24,7 +24,7 @@
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .spot-detail {
+  .place-detail {
     width: 80%
   }
 }

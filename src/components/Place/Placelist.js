@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { HashLoader } from 'react-spinners';
-import SpotCard from './SpotCard';
-import './Spotlist.css';
+import PlaceCard from './PlaceCard';
+import './Placelist.css';
 
-class Spotlist extends Component {
+class Placelist extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,27 +23,27 @@ class Spotlist extends Component {
 
   handleScroll() {
     const { loading } = this.props;
-    const { hasNextPage } = this.props.spots.pageInfo;
+    const { hasNextPage } = this.props.places.pageInfo;
 
     if (
       (window.scrollY + window.innerHeight + 50 >= document.body.offsetHeight) &&
       !loading &&
       hasNextPage
     ) {
-      this.props.loadMoreSpots();
+      this.props.loadMorePlaces();
     }
   }
 
   render() {
-    const { spots, loading } = this.props;
+    const { places, loading } = this.props;
 
     let list = [];
-    if (spots) {
-      list = spots.edges.map(({ node }) => <SpotCard key={node._id} {...node} />);
+    if (places) {
+      list = places.edges.map(({ node }) => <PlaceCard key={node._id} {...node} />);
     }
     return (
       <div>
-        <div className="spotlist">
+        <div className="placelist">
           {list}
         </div>
         {
@@ -57,4 +57,4 @@ class Spotlist extends Component {
   }
 }
 
-export default Spotlist;
+export default Placelist;

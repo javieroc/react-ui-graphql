@@ -1,25 +1,25 @@
-.spot-info {
+.place-info {
   width: 100%;
 }
 
-.spot-info img {
+.place-info img {
   width: 100%;
 }
 
-.spot-info h4{
+.place-info h4{
   margin: .2em 0;
 }
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-  .spot-info {
+  .place-info {
     width: 100%
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .spot-info {
+  .place-info {
     width: 45%
   }
 }
@@ -29,7 +29,7 @@
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .spot-info {
+  .place-info {
     width: 55%
   }
 }

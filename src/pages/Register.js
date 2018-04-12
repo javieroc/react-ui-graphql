@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
 import './Register.css';
 
 class Register extends Component {
@@ -32,7 +32,6 @@ class Register extends Component {
 
     try {
       const googleAddress = await geocodeByAddress(this.state.address);
-      const location = await getLatLng(googleAddress[0]);
       const {
         firstName,
         lastName,
@@ -43,7 +42,6 @@ class Register extends Component {
       const registerData = {
         firstName,
         lastName,
-        location,
         email,
         address: googleAddress[0].formatted_address,
         password,
