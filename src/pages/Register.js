@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete';
+import { withScriptjs } from 'react-google-maps';
+import { compose, withProps } from 'recompose';
 import './Register.css';
 
 class Register extends Component {
@@ -53,7 +55,7 @@ class Register extends Component {
         },
       });
 
-      const { user, token } = response.data.register;
+      const { user, token } = response.data.signup;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       this.props.history.push('/');
@@ -134,16 +136,12 @@ class Register extends Component {
 }
 
 const registerMutation = gql`
-  mutation register($registerData: RegisterData!) {
-    register(registerData: $registerData) {
+  mutation ($registerData: RegisterData!) {
+    signup(registerData: $registerData) {
       user {
         _id
         firstName
         lastName
-        location {
-          lat
-          lng
-        }
         email
         avatar
         address
@@ -153,4 +151,12 @@ const registerMutation = gql`
   }
 `;
 
-export default graphql(registerMutation)(Register);
+const EnhancedRegister = compose(
+  withProps({
+    googleMapURL: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCAmoSllnLYVgVOS5mL4MfF0lLnAu25mxU&libraries=geometry,drawing,places',
+    loadingElement: <div />,
+  }),
+  withScriptjs,
+)(graphql(registerMutation)(Register));
+
+export default EnhancedRegister;

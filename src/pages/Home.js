@@ -1,15 +1,8 @@
 import React from 'react';
-import { gql } from 'apollo-boost';
-import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 import Hero from '../components/Hero/Hero';
 import Placelist from '../components/Place/Placelist';
-
-const Home = props => (
-  <div>
-    <Hero />
-    <Placelist {...props.placeQuery} />
-  </div>
-);
 
 const PlaceQuery = gql`
   query Places($cursor: String, $first: Int) {
@@ -37,39 +30,41 @@ const PlaceQuery = gql`
   }
 `;
 
-const PlaceQueryOptions = {
-  options: {
-    notifyOnNetworkStatusChange: true,
-  },
-  props({ data: { loading, places, fetchMore } }) {
-    return {
-      placeQuery: {
-        loading,
-        places,
-        loadMorePlaces: () => fetchMore({
-          query: PlaceQuery,
-          variables: {
-            cursor: places.pageInfo.endCursor,
-            first: 3,
-          },
-          updateQuery: (previousResult, { fetchMoreResult }) => {
-            const newEdges = fetchMoreResult.places.edges;
-            const { total, pageInfo, __typename } = fetchMoreResult.places;
-            return newEdges.length ? {
-              places: {
-                __typename,
-                total,
-                edges: [...previousResult.places.edges, ...newEdges],
-                pageInfo,
+const HomeWithData = () => (
+  <Query query={PlaceQuery} notifyOnNetworkStatusChange>
+    {({ data: { places }, loading, fetchMore }) => (
+      <div>
+        <Hero />
+        <Placelist
+          loading={loading}
+          places={places || {}}
+          loadMorePlaces={() =>
+            fetchMore({
+              variables: {
+                cursor: places.pageInfo.endCursor,
+                first: 3,
               },
-            } : previousResult;
-          },
-        }),
-      },
-    };
-  },
-};
+              updateQuery: (previousResult, { fetchMoreResult }) => {
+                const newEdges = fetchMoreResult.places.edges;
+                const { total, pageInfo, __typename } = fetchMoreResult.places;
 
-const HomeWithData = graphql(PlaceQuery, PlaceQueryOptions)(Home);
+                return newEdges.length
+                  ? {
+                      places: {
+                        __typename,
+                        total,
+                        edges: [...previousResult.places.edges, ...newEdges],
+                        pageInfo,
+                      },
+                    }
+                  : previousResult;
+              },
+            })
+          }
+        />
+      </div>
+    )}
+  </Query>
+);
 
 export default HomeWithData;

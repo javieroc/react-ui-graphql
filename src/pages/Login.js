@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import './Login.css';
 
 class Login extends Component {
@@ -36,7 +36,7 @@ class Login extends Component {
         },
       });
 
-      const { user, token } = response.data.login;
+      const { user, token } = response.data.signin;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
 
@@ -89,16 +89,12 @@ class Login extends Component {
 }
 
 const loginMutation = gql`
-  mutation login($loginData: LoginData!) {
-    login(loginData: $loginData) {
+  mutation ($loginData: LoginData!) {
+    signin(loginData: $loginData) {
       user {
         _id
         firstName
         lastName
-        location {
-          lat
-          lng
-        }
         email
         avatar
         address

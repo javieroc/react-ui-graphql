@@ -6,9 +6,6 @@ import './Placelist.css';
 class Placelist extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
 
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -38,7 +35,7 @@ class Placelist extends Component {
     const { places, loading } = this.props;
 
     let list = [];
-    if (places) {
+    if (places.edges) {
       list = places.edges.map(({ node }) => <PlaceCard key={node._id} {...node} />);
     }
     return (

@@ -9,14 +9,14 @@ const PlaceInfo = (props) => {
     description,
     address,
     phone,
-    photo,
+    photos,
     rating,
     price,
   } = props;
   return (
     <div className="place-info">
       <img
-        src={photo}
+        src={photos[0]}
         alt=""
       />
       <div>
@@ -44,7 +44,7 @@ PlaceInfo.propTypes = {
   address: PropTypes.string,
   phone: PropTypes.string,
   rating: PropTypes.number,
-  photo: PropTypes.string,
+  photos: PropTypes.array,
   price: PropTypes.number,
 };
 

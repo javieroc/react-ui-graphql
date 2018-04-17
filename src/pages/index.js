@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './Home';
 import Place from './Place';
-import Login from './Login';
+import Login from './NewLogin';
 import Register from './Register';
 import Nav from '../components/Nav/Nav';
 
