@@ -35,7 +35,7 @@ const PlaceQuery = gql`
 `;
 
 const HomeWithData = () => (
-  <Query query={PlaceQuery} notifyOnNetworkStatusChange>
+  <Query query={PlaceQuery} variables={{ first: 10 }} notifyOnNetworkStatusChange>
     {({ data: { places }, loading, fetchMore }) => (
       <div>
         <Hero />
