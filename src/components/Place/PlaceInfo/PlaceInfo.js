@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
+import Gallery from 'react-photo-gallery';
 import './PlaceInfo.css';
 
 const PlaceInfo = (props) => {
@@ -11,19 +12,14 @@ const PlaceInfo = (props) => {
     phone,
     photos,
     rating,
-    price,
   } = props;
   return (
     <div className="place-info">
-      <img
-        src={photos[0]}
-        alt=""
-      />
-      <div>
+      <Gallery photos={photos} />
+      <div className="place-info-data">
         <h3>{name}</h3>
-        <h4>Phone: {phone}</h4>
-        <h4>Address: {address}</h4>
-        <h4>Price: {price}</h4>
+        <h4>Phone: <small>{phone}</small></h4>
+        <h4>Address: <small>{address}</small></h4>
         <p>{description}</p>
         <div className="">
           <ReactStars
@@ -44,8 +40,7 @@ PlaceInfo.propTypes = {
   address: PropTypes.string,
   phone: PropTypes.string,
   rating: PropTypes.number,
-  photos: PropTypes.array,
-  price: PropTypes.number,
+  photos: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default PlaceInfo;

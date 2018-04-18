@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Hero from '../components/Hero/Hero';
-import Placelist from '../components/Place/Placelist';
+import Placelist from '../components/Placelist/Placelist';
 
 const PlaceQuery = gql`
   query Places($cursor: String, $first: Int) {
@@ -18,7 +18,11 @@ const PlaceQuery = gql`
           name
           address
           phone
-          photos
+          photos {
+            src
+            width
+            height
+          }
           rating
         }
       }

@@ -18,7 +18,7 @@ const PlaceCard = (props) => {
       <Link to={`/places/${_id}`}>
         <div>
           <img
-            src={photos[0]}
+            src={photos[0].src}
             alt=""
             width={360}
             height={240}

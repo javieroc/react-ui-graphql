@@ -1,9 +1,13 @@
 .place-info {
+  background-color: #FFF;
+  border-radius: 2px;
+  margin: .5em;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.20), 0 5px 5px rgba(0,0,0,0.22);
   width: 100%;
 }
 
-.place-info img {
-  width: 100%;
+.place-info-data {
+  padding: .5em;
 }
 
 .place-info h4{

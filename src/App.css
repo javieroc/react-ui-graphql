@@ -1,4 +1,5 @@
-body {
+body, html {
+  width: 100%;
   background-color: #e2e1e0;
   font-family: 'Allerta', sans-serif;
   margin: 0;

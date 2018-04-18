@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import PlaceDetail from '../components/Place/PlaceDetail';
+import PlaceDetail from '../components/Place/Place';
 
 const PlaceQuery = gql`
 query Place($id: ID!) {
@@ -13,7 +13,11 @@ query Place($id: ID!) {
     description
     address
     phone
-    photos
+    photos {
+      src
+      width
+      height
+    }
     rating
     location {
       lat

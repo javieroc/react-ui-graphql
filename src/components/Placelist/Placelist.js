@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashLoader } from 'react-spinners';
-import PlaceCard from './PlaceCard';
+import PlaceCard from '../PlaceCard/PlaceCard';
 import './Placelist.css';
 
 class Placelist extends Component {
