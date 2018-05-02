@@ -10,7 +10,6 @@ const PlaceQuery = gql`
       cursor: $cursor
       first: $first
     ) {
-      total
       edges {
         cursor
         node {
@@ -50,13 +49,12 @@ const HomeWithData = () => (
               },
               updateQuery: (previousResult, { fetchMoreResult }) => {
                 const newEdges = fetchMoreResult.places.edges;
-                const { total, pageInfo, __typename } = fetchMoreResult.places;
+                const { pageInfo, __typename } = fetchMoreResult.places;
 
                 return newEdges.length
                   ? {
                       places: {
                         __typename,
-                        total,
                         edges: [...previousResult.places.edges, ...newEdges],
                         pageInfo,
                       },
