@@ -2,9 +2,9 @@ import React from 'react';
 import Search from './Search';
 import './Hero.css';
 
-const Hero = () => (
+const Hero = ({ refetch }) => (
   <div className="hero-section">
-    <Search />
+    <Search refetch={refetch} />
   </div>
 );
 

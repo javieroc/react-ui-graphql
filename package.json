@@ -52,7 +52,8 @@
     "react-router-dom": "^4.2.2",
     "react-spinners": "^0.2.6",
     "react-stars": "^2.2.5",
-    "recompose": "^0.26.0"
+    "recompose": "^0.26.0",
+    "throttle-debounce": "^1.0.1"
   },
   "proxy": "http://localhost:3001"
 }

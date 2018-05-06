@@ -5,10 +5,11 @@ import Hero from '../components/Hero/Hero';
 import Placelist from '../components/Placelist/Placelist';
 
 const PlaceQuery = gql`
-  query Places($cursor: String, $first: Int) {
+  query Places($cursor: String, $first: Int, $filter: String) {
     places(
       cursor: $cursor
       first: $first
+      filter: $filter
     ) {
       edges {
         cursor
@@ -35,13 +36,15 @@ const PlaceQuery = gql`
 
 const HomeWithData = () => (
   <Query query={PlaceQuery} variables={{ first: 10 }} notifyOnNetworkStatusChange>
-    {({ data: { places }, loading, fetchMore }) => (
-      <div>
-        <Hero />
-        <Placelist
-          loading={loading}
-          places={places || {}}
-          loadMorePlaces={() =>
+    {({
+      data: { places }, loading, fetchMore, refetch,
+      }) => (
+        <div>
+          <Hero refetch={refetch} />
+          <Placelist
+            loading={loading}
+            places={places || {}}
+            loadMorePlaces={() =>
             fetchMore({
               variables: {
                 cursor: places.pageInfo.endCursor,
@@ -63,8 +66,8 @@ const HomeWithData = () => (
               },
             })
           }
-        />
-      </div>
+          />
+        </div>
     )}
   </Query>
 );
